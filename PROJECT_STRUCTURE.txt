@@ -1,0 +1,99 @@
+Medical E-commerce Platform - Project Structure
+==========================================
+
+📁 Root Directory Structure
+--------------------------
+/
+├── app/                    # Application core code
+├── bootstrap/             # Framework bootstrap files
+├── config/               # Configuration files
+├── database/             # Database migrations and seeders
+├── public/              # Publicly accessible files
+├── resources/           # Views, raw assets, and translations
+├── routes/              # Application routes
+├── storage/             # Logs, cache, and generated files
+└── tests/               # Automated tests
+
+📁 App Directory (/app)
+----------------------
+app/
+├── Http/
+│   ├── Controllers/    # Request handlers
+│   │   ├── Admin/     # Admin panel controllers
+│   │   └── Customer/  # Public area controllers
+│   ├── Middleware/    # Request filters
+│   └── Requests/      # Form validation rules
+├── Models/            # Eloquent models
+├── Observers/        # Model observers for events
+└── Providers/       # Service providers
+
+📁 Resources (/resources)
+------------------------
+resources/
+├── css/              # Stylesheets
+├── js/              # JavaScript files
+└── views/           # Blade templates
+    ├── admin/       # Admin panel views
+    │   ├── products/
+    │   └── orders/
+    ├── customer/    # Public area views
+    │   ├── home/
+    │   ├── cart/
+    │   └── checkout/
+    ├── layouts/     # Base layout templates
+    └── components/  # Reusable view components
+
+📁 Database (/database)
+----------------------
+database/
+├── migrations/      # Database table schemas
+├── factories/       # Model factories for testing
+└── seeders/        # Database seeders
+
+📁 Routes (/routes)
+------------------
+routes/
+├── web.php         # Web routes
+└── admin.php       # Admin panel routes
+
+📁 Public (/public)
+------------------
+public/
+├── css/           # Compiled CSS
+├── js/           # Compiled JavaScript
+├── images/       # Public images
+└── storage/      # File uploads (symlinked)
+
+📁 Tests (/tests)
+----------------
+tests/
+├── Unit/         # Unit tests
+└── Feature/      # Feature tests
+
+Key Files
+---------
+├── .env                 # Environment configuration
+├── composer.json        # PHP dependencies
+├── package.json         # Node.js dependencies
+└── README.md           # Project documentation
+
+Database Structure
+-----------------
+Tables:
+├── users               # Admin users
+├── products           # Medical products
+├── orders            # Customer orders
+├── order_items       # Order line items
+└── product_logs      # Product change history
+
+Authentication
+-------------
+- Laravel Breeze for admin authentication
+- No authentication required for customer area
+
+Development Tools
+----------------
+├── Laravel 12.x      # PHP Framework
+├── MySQL            # Database
+├── Tailwind CSS    # Styling
+└── Blade           # Template Engine 
