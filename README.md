@@ -181,13 +181,11 @@ PharmaGo/
 
 The database structure and sample data can be set up in two ways:
 
-1. **Using Migrations & Seeders** (Recommended)
+**Using Migrations & Seeders** 
 ```bash
-php artisan migrate --seed
+php artisan migrate
+php artisan db:seed
 ```
-
-2. **Using SQL File**
-- Import `database/pharmago.sql` to your MySQL server
 
 ## Contributing
 1. Fork the repository
