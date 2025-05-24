@@ -1,6 +1,6 @@
 # PharmaGo - Medical E-commerce Platform
 
-A Laravel-based e-commerce platform specialized for medical and pharmaceutical products.
+A Laravel-based e-commerce platform specialized for medical and pharmaceutical products, built with a robust layered architecture for maintainability and scalability.
 
 ## Quick Links
 - 📝 [Documentation](docs/README.md)
@@ -10,8 +10,8 @@ A Laravel-based e-commerce platform specialized for medical and pharmaceutical p
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/amr-abdeltawab-ahmed/PharmaGo.git
-cd PharmaGo
+git clone https://github.com/amr-abdeltawab-ahmed/medical-ecommerce.git
+cd medical-ecommerce
 ```
 
 2. Install dependencies:
@@ -37,7 +37,8 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 
 # Run migrations and seeders
-php artisan migrate --seed
+php artisan migrate
+php artisan db:seed
 ```
 
 5. Final setup:
@@ -52,31 +53,93 @@ Email: admin@example.com
 Password: password
 ```
 
-## Project Structure
+## Project Architecture
 
-### Key Components
+PharmaGo follows a clean, layered architecture pattern that separates concerns and promotes maintainability:
+
+### Architectural Layers
+
+1. **Presentation Layer (Controllers & Views)**
+   - Handles HTTP requests and responses
+   - Manages view rendering
+   - Validates input data
+   - Routes requests to appropriate services
+
+2. **Service Layer**
+   - Implements business logic
+   - Orchestrates data flow between controllers and repositories
+   - Handles complex operations and transactions
+   - Ensures business rules and validations
+
+3. **Repository Layer**
+   - Manages data persistence
+   - Abstracts database operations
+   - Provides clean interfaces for data access
+   - Implements caching strategies
+
+4. **Model Layer**
+   - Defines data structures
+   - Implements relationships
+   - Handles model-specific logic
+   - Provides data attributes and mutators
+
+### Project Structure
 
 ```
 PharmaGo/
 ├── app/
-│   ├── Http/Controllers/
-│   │   ├── Admin/                 # Admin controllers
-│   │   │   ├── ProductController.php
-│   │   │   └── OrderController.php
-│   │   └── Customer/             # Customer controllers
-│   │       ├── HomeController.php
-│   │       ├── CartController.php
-│   │       └── CheckoutController.php
-│   └── Models/                   # Eloquent models
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/                 # Admin controllers
+│   │   │   └── Customer/             # Customer controllers
+│   │   └── Requests/                # Form requests & validation
+│   ├── Services/
+│   │   ├── Cart/                    # Cart management services
+│   │   ├── Checkout/               # Checkout processing services
+│   │   └── Product/                # Product management services
+│   ├── Repositories/
+│   │   ├── Contracts/              # Repository interfaces
+│   │   └── Eloquent/              # Concrete repository implementations
+│   ├── Models/                    # Eloquent models
+│   └── Observers/                # Model observers for events
 ├── database/
 │   ├── migrations/              # Database structure
 │   └── seeders/                # Sample data
-└── resources/
-    └── views/
-        ├── admin/              # Admin panel views
-        ├── customer/           # Customer facing views
-        └── layouts/           # Base templates
+├── resources/
+│   └── views/
+│       ├── admin/              # Admin panel views
+│       ├── customer/           # Customer facing views
+│       └── layouts/           # Base templates
+└── routes/
+    ├── web.php               # Web routes
+    └── api.php              # API routes
 ```
+
+### Key Components and Their Responsibilities
+
+1. **Controllers (`app/Http/Controllers/`)**
+   - Handle HTTP requests
+   - Delegate to services
+   - Return responses/views
+   - Minimal business logic
+
+2. **Services (`app/Services/`)**
+   - Implement business logic
+   - Coordinate between repositories
+   - Handle complex operations
+   - Maintain business rules
+
+3. **Repositories (`app/Repositories/`)**
+   - Abstract data access
+   - Implement CRUD operations
+   - Handle data persistence
+   - Cache management
+
+4. **Models (`app/Models/`)**
+   - Define data structure
+   - Manage relationships
+   - Implement scopes
+   - Handle model events
 
 ## Developer Documentation
 
@@ -100,6 +163,7 @@ PharmaGo/
 
 1. **Adding New Features**
    - Create new controller in appropriate namespace
+   - Add corresponding service and repository classes
    - Add routes in `routes/web.php`
    - Create views in `resources/views`
 
